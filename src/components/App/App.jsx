@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Form } from 'components/Form/Form';
-import { Contacts } from 'components/Contacts/Contacts';
-import { Filter } from 'components/Filter/Filter';
+import PropTypes from 'prop-types';
+import { Form } from 'components/Form';
+import { Contacts } from 'components/Contacts';
+import { Filter } from 'components/Filter';
+import { Container, MainTitle, Title } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -57,13 +59,22 @@ export class App extends Component {
     const onChangeFilter = this.onChangeFilter;
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <MainTitle>Phone book</MainTitle>
         <Form onSubmit={addContact} />
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <Filter value={filter} onChange={onChangeFilter} />
         <Contacts contacts={visibleContents} onClick={this.deleteContacts} />
-      </div>
+      </Container>
     );
   }
 }
+
+App.propTypes = {
+  state: PropTypes.objectOf(
+    PropTypes.shape({
+      contacts: PropTypes.array,
+      filter: PropTypes.string,
+    })
+  ),
+};
