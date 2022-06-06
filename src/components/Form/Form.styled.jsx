@@ -5,7 +5,10 @@ export const FormContact = styled.form`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-bottom: 20px;
+  padding: 10px;
+  border: 1px solid ${theme.colors.gray};
+  width: 400px;
+  margin-bottom: 30px;
 `;
 
 export const Label = styled.label`
