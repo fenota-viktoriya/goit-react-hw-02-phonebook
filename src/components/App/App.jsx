@@ -55,15 +55,17 @@ export class App extends Component {
   render() {
     const visibleContents = this.geFilteredContacts();
     const addContact = this.addContact;
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const onChangeFilter = this.onChangeFilter;
 
     return (
       <Container>
         <MainTitle>Phone book</MainTitle>
         <Form onSubmit={addContact} />
-        <Title>Contacts</Title>
-        <Filter value={filter} onChange={onChangeFilter} />
+        {contacts.length !== 0 && <Title>Contacts</Title>}
+        {contacts.length !== 0 && (
+          <Filter value={filter} onChange={onChangeFilter} />
+        )}
         <Contacts contacts={visibleContents} onClick={this.deleteContacts} />
       </Container>
     );
